@@ -24,7 +24,7 @@ class ImportPostsCommand extends Command
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
-    {
+    {   
         $this->deleteUsersAndPosts();
 
         $this->resetAutoIncrement('user');
@@ -43,7 +43,7 @@ class ImportPostsCommand extends Command
     private function importUsers(OutputInterface $output)
     {
         $httpClient = HttpClient::create();
-        $usersData = $httpClient->request('GET', 'https://jsonplaceholder.typicode.com/users')->toArray();
+        $usersData = $httpClient->request('GET', $_ENV['API_BASE_PLACEHOLDER_URL'].'/users')->toArray();
 
         $importedUsersCount = 0;
 
@@ -62,7 +62,7 @@ class ImportPostsCommand extends Command
     private function importPosts(OutputInterface $output)
     {
         $httpClient = HttpClient::create();
-        $postsData = $httpClient->request('GET', 'https://jsonplaceholder.typicode.com/posts')->toArray();
+        $postsData = $httpClient->request('GET', $_ENV['API_BASE_PLACEHOLDER_URL'].'/posts')->toArray();
 
         $importedPostsCount = 0;
 
