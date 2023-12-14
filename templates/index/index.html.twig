@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Posty Użytkowników{% endblock %}
+
+{% block body %}
+<style>
+    .post-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .post-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+
+    header {
+        background-color: #333;
+        padding: 1em;
+        color: white;
+        text-align: center;
+    }
+
+    header a {
+        color: white;
+        text-decoration: none;
+        margin: 0 1em;
+    }
+</style>
+
+<div class="post-wrapper">
+    <header class="bg-dark text-white p-4">
+        <h1>Wasiak Damian - Zadanie rekrutacyjne dla Cogitech </h1>
+        {# Dodaj linki do logowania i rejestracji w nagłówku #}
+        <a href="#" class="text-white text-decoration-none">Zaloguj się</a>
+        <a href="#" class="text-white text-decoration-none">Zarejestruj się</a>
+    </header>
+
+    {# Tutaj dodaj treść strony, np. posty użytkowników #}
+    <div class="container mt-4">
+        {# Twój kod strony #}
+    </div>
+</div>
+
+{% endblock %}
