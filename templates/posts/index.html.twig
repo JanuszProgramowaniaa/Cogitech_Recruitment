@@ -4,17 +4,16 @@
 
 {% block body %}
     <div class="container mt-5">
-        <h1>Posty </h1>
+        <h1 class="mb-4 text-center">Posty</h1>
 
         <div class="row">
             {% for post in posts %}
-                <div class="col-md-6 mb-4">
+                <div class="col-md-12 mb-4">
                     <div class="card">
                         <div class="card-body">
-                            <h2>{{ post.title }}</h2>
-                            <p>{{ post.content }}</p>
-                            <p>Author: {{ post.author }}</p>
-                            <p>Created at: {{ post.createdAt|date('Y-m-d H:i:s') }}</p>
+                            <h2 class="card-title">{{ post.title }}</h2>
+                            <p class="card-text">{{ post.body }}</p>
+                            <p class="card-text"><strong>Author:</strong> {{ post.user.name }} {{ post.user.username }}</p>
                         </div>
                     </div>
                 </div>
