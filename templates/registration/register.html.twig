@@ -28,11 +28,13 @@
                             </div>
 
                             <button type="submit" class="btn btn-primary">Zarejestruj się</button>
+                            <div class="d-flex justify-content-between mt-3">
+                                <p class="mb-0">Posiadasz już konto ? Zaloguj się <a href="{{ path('app_login') }}">Zaloguj się</a></p>
+                                <a href="{{ path('app_index') }}" class="btn btn-secondary">Powrót</a>
+                            </div>
                         {{ form_end(registrationForm) }}
-
-                        <div class="mt-3">
-                            <a href="{{ path('app_index') }}" class="btn btn-secondary">Powrót</a>
-                        </div>
+                        
+                       
                     </div>
                 </div>
             </div>
