@@ -11,13 +11,14 @@ use App\Repository\PostRepository;
 class PostsController extends AbstractController
 {
     
-    #[Route('/posts', name: 'app_posts')]
+    #[Route('/posts/{page}', name: 'app_posts')]
     #[IsGranted('ROLE_USER')]
-    public function index(PostRepository $postRepository): Response
+    public function index(PostRepository $postRepository, int $page = 1, int $itemPerPage = 5): Response
     {
         
-        $posts = $postRepository->findAll();
+        $posts = $postRepository->findPosts($page*$itemPerPage-$itemPerPage, $itemPerPage);
           
+       
         return $this->render('posts/index.html.twig', [
             'posts' => $posts,
         ]);

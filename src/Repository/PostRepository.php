@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Post;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * @extends ServiceEntityRepository<Post>
@@ -19,6 +20,26 @@ class PostRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Post::class);
+    }
+
+    public function findPosts(int $startItem = 0, int $itemPerPage = 5): array
+    {
+        try {
+            $entityManager = $this->getEntityManager();
+            $queryBuilder = $entityManager->createQueryBuilder();
+            $queryBuilder->select("p")
+                ->from(Post::class, 'p');
+
+            $paginator = new Paginator($queryBuilder->getQuery(), true);
+            $paginator->getQuery()->setFirstResult($startItem)
+                ->setMaxResults($itemPerPage);
+
+            $posts = iterator_to_array($paginator);
+
+            return $posts;
+        } catch (\Exception $e) {
+            throw $e;
+        }
     }
 
 //    /**
