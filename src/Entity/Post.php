@@ -2,10 +2,14 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
 use App\Repository\PostRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+use ApiPlatform\Metadata\ApiResource;
+
 #[ORM\Entity(repositoryClass: PostRepository::class)]
+#[ApiResource]
 class Post
 {
     #[ORM\Id]
