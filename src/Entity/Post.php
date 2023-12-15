@@ -7,9 +7,12 @@ use App\Repository\PostRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
-#[ApiResource]
+#[ApiResource(operations: [
+    new GetCollection()
+])]
 class Post
 {
     #[ORM\Id]
