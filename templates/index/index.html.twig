@@ -24,15 +24,15 @@
 <div class="post-wrapper">
     <header class="bg-dark text-white p-4">
         <h1>Wasiak Damian - Zadanie rekrutacyjne dla Cogitech </h1>
-      
-        <a href="{{ path('app_login') }}" class="text-white text-decoration-none">Zaloguj się</a>
-        <a href="{{ path('app_register') }}" class="text-white text-decoration-none">Zarejestruj się</a>
+        {% if app.user %}
+            <p>Jesteś zalogowany. Możesz przeglądać posty.</p>
+            <a href="{{ path('app_posts') }}" class="btn btn-primary">Przejdź do postów</a>
+        {% else %}
+            <p>Aby przeglądać posty, musisz posiadać być zalogowany.</p>
+            <a href="{{ path('app_register') }}" class="btn btn-success">Zarejestruj się</a>
+            <a href="{{ path('app_login') }}" class="btn btn-primary">Zaloguj się</a>
+        {% endif %}
     </header>
-
-
-    <div class="container mt-4">
-
-    </div>
 </div>
 
 {% endblock %}

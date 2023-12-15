@@ -10,20 +10,39 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\User;
 use App\Entity\Post;
 
+/**
+ * Komenda do importu użytkowników i postów z zewnętrznego źródła.
+ */
 class ImportPostsCommand extends Command
 {
     protected static $defaultName = 'app:import-posts';
     protected static $defaultDescription = 'Importuje użytkowników i posty';
 
+    /**
+     * @var EntityManagerInterface $entityManager Manager encji Doctrine.
+     */
     private EntityManagerInterface $entityManager;
 
+    /**
+     * Konstruktor komendy.
+     *
+     * @param EntityManagerInterface $entityManager Manager encji Doctrine.
+     */
     public function __construct(EntityManagerInterface $entityManager)
     {
         parent::__construct();
         $this->entityManager = $entityManager;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    /**
+     * Wykonuje import użytkowników i postów.
+     *
+     * @param InputInterface $input Interfejs wejściowy konsoli.
+     * @param OutputInterface $output Interfejs wyjściowy konsoli.
+     *
+     * @return int Kod zakończenia komendy.
+     */
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {   
         $this->deleteUsersAndPosts();
 
@@ -40,6 +59,11 @@ class ImportPostsCommand extends Command
         return Command::SUCCESS;
     }
 
+    /**
+     * Importuje użytkowników z zewnętrznego źródła.
+     *
+     * @param OutputInterface $output Interfejs wyjściowy konsoli.
+     */
     private function importUsers(OutputInterface $output)
     {
         $httpClient = HttpClient::create();
@@ -59,6 +83,11 @@ class ImportPostsCommand extends Command
         $output->writeln('Liczba zaimportowanych użytkowników: <fg=green>' . $importedUsersCount . '</>');
     }
 
+    /**
+     * Importuje posty z zewnętrznego źródła.
+     *
+     * @param OutputInterface $output Interfejs wyjściowy konsoli.
+     */
     private function importPosts(OutputInterface $output)
     {
         $httpClient = HttpClient::create();
@@ -82,6 +111,13 @@ class ImportPostsCommand extends Command
         $output->writeln('Liczba zaimportowanych postów: <fg=green>' . $importedPostsCount . '</>');
     }
 
+    /**
+     * Importuje pojedynczego użytkownika.
+     *
+     * @param array $userData Dane użytkownika.
+     *
+     * @return User Utworzony użytkownik.
+     */
     private function importUser(array $userData): User
     {
         $user = new User();
@@ -97,6 +133,14 @@ class ImportPostsCommand extends Command
         return $user;
     }
 
+    /**
+     * Importuje pojedynczego posta.
+     *
+     * @param array $postData Dane posta.
+     * @param User $user Użytkownik przypisany do posta.
+     *
+     * @return Post Utworzony post.
+     */
     private function importPost(array $postData, User $user): Post
     {
         $post = new Post();
@@ -111,6 +155,9 @@ class ImportPostsCommand extends Command
         return $post;
     }
 
+    /**
+     * Usuwa wszystkich użytkowników i posty z bazy danych.
+     */
     private function deleteUsersAndPosts()
     {
         $connection = $this->entityManager->getConnection();
@@ -120,6 +167,11 @@ class ImportPostsCommand extends Command
         $connection->executeStatement('DELETE FROM user');
     }
 
+    /**
+     * Resetuje inkrementację dla określonej tabeli.
+     *
+     * @param string $tableName Nazwa tabeli.
+     */
     private function resetAutoIncrement($tableName)
     {
         $connection = $this->entityManager->getConnection();

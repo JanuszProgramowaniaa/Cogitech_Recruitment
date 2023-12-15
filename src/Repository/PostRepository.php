@@ -22,21 +22,19 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
-    public function findPosts(int $startItem = 0, int $itemPerPage = 5): array
+    public function findPosts(int $startElement = 0, int $elementPerPage = 5): Paginator
     {
         try {
             $entityManager = $this->getEntityManager();
             $queryBuilder = $entityManager->createQueryBuilder();
             $queryBuilder->select("p")
                 ->from(Post::class, 'p');
-
+    
             $paginator = new Paginator($queryBuilder->getQuery(), true);
-            $paginator->getQuery()->setFirstResult($startItem)
-                ->setMaxResults($itemPerPage);
-
-            $posts = iterator_to_array($paginator);
-
-            return $posts;
+            $paginator->getQuery()->setFirstResult($startElement)
+                ->setMaxResults($elementPerPage);
+    
+            return $paginator;
         } catch (\Exception $e) {
             throw $e;
         }

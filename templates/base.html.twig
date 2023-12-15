@@ -15,14 +15,38 @@
         {% endblock %}
     </head>
     <body>
-        
-        {% if app.user %}
-            <div class="d-flex justify-content-end mb-3 pe-5 mt-2">
-                <p class="mb-0 me-2">Jesteś zalogowany jako {{ app.user.userIdentifier }},</p>
-                <a href="{{ path('app_logout') }}" class="btn btn-outline-primary btn-sm">Wyloguj</a>
-            </div>
-        {% endif %}
+        {% include '_parts/navbar.html.twig' %}
         
         {% block body %}{% endblock %}
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                function showAlert(message, type) {
+                    const alertPlaceholder = document.getElementById('alertPlaceholder');
+
+                    const wrapper = document.createElement('div');
+                    wrapper.innerHTML = `
+                        <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                            <div class="d-flex justify-content-center">${message}</div>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    `;
+
+                    alertPlaceholder.appendChild(wrapper);
+
+                    // hide alert after 3s
+                    setTimeout(() => {
+                        wrapper.firstChild.alert('close');
+                    }, 3000);
+                }
+      
+                {% for key, messages in app.session.flashbag.all() %}
+                    {% for message in messages %}
+                        showAlert('{{ message }}', '{{ key }}');
+                    {% endfor %}
+                {% endfor %}
+
+            });
+        </script>
     </body>
 </html>
