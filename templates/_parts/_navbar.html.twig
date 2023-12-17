@@ -24,7 +24,7 @@
         {% if app.user %}
             <div class="ms-auto">
                 <div class="d-flex justify-content-end align-items-center">
-                    <p class="mb-0 me-2 text-light">Jesteś zalogowany jako {{ app.user.userIdentifier }},</p>
+                    <p class="mb-0 me-2 text-light">Jesteś zalogowany jako {{ app.user.userIdentifier }}</p>
                     <a href="{{ path('app_logout') }}" class="btn btn-outline-primary btn-sm">Wyloguj</a>
                 </div>
             </div>
