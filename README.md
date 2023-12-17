@@ -34,12 +34,16 @@ Projekt będzie dostępny pod http://localhost:8000 w twojej przeglądarce.
 
 ### Posty
 Mamy tutaj posty, wyświetlane jest 5 postów za pomoca paginacji, aby nie wywalić serwera
-![Image](https://github.com/JanuszProgramowaniaa/Cogitech_Recruitment/tree/master/public/images/posty.jpg)
+![Posty](https://raw.githubusercontent.com/JanuszProgramowaniaa/Cogitech_Recruitment/master/public/images/posty.jpg)
 
 ### Postman
 Mamy tutaj pokazany strzał przez postmana na adres/api/posts
-![Image](https://github.com/JanuszProgramowaniaa/Cogitech_Recruitment/tree/master/public/images/api.jpg)
+![Posty](https://raw.githubusercontent.com/JanuszProgramowaniaa/Cogitech_Recruitment/master/public/images/api.jpg)
 
 ### Api Platform
 Tutaj mamy pokazane dostepne endpoiny w api platform
-![Image](https://github.com/JanuszProgramowaniaa/Cogitech_Recruitment/tree/master/public/images/Api-platform.jpg.jpg)
+![Posty](https://raw.githubusercontent.com/JanuszProgramowaniaa/Cogitech_Recruitment/master/public/images/Api-platform.jpg)
+
+### Import tabel
+Tutaj mamy pokazany import tabel z api do naszej bazy danych za pomoca komendy
+![Posty](https://raw.githubusercontent.com/JanuszProgramowaniaa/Cogitech_Recruitment/master/public/images/import.jpg)
