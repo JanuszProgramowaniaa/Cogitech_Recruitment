@@ -27,18 +27,21 @@ class ImportPostsCommandTest extends KernelTestCase
     {
         $command = new ImportPostsCommand($this->entityManager);
         $commandTester = new CommandTester($command);
-
+    
         $commandTester->execute([]);
-
-        // Add assertions based on the expected output or state after command execution
+    
         $this->assertStringContainsString('Tabela użytkowników została wyczyszczona przed importem', $commandTester->getDisplay());
         $this->assertStringContainsString('Tabela postów została wyczyszczona przed importem', $commandTester->getDisplay());
-        // Add more assertions as needed
+    
+        $this->assertStringContainsString('Zaimportowano użytkownika:', $commandTester->getDisplay());
+        $this->assertStringContainsString('Zaimportowano post:', $commandTester->getDisplay());
+    
+        $this->assertStringContainsString('Liczba zaimportowanych użytkowników:', $commandTester->getDisplay());
+        $this->assertStringContainsString('Liczba zaimportowanych postów:', $commandTester->getDisplay());
+    
+        $this->assertStringContainsString('inkrementacja została wyzerowana', $commandTester->getDisplay());
+    
     }
 
-    // Add more test methods for other functionalities of the ImportPostsCommand class
-    // ...
 
-    // Optional: You may want to test the private methods individually by making them public or protected
-    // and testing them separately.
 }
