@@ -10,31 +10,73 @@
                     <div class="card-body">
                         <h1 class="mb-4">Rejestracja</h1>
 
-                        {{ form_errors(registrationForm) }}
+                        <div id="registration-form-container">
+                            {{ form_errors(registrationForm) }}
+                            {{ form_start(registrationForm) }}
+                                <div class="mb-3">
+                                    {{ form_label(registrationForm.email, null, {'label_attr': {'class': 'form-check-label'}}) }}
+                                    {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}
+                                    <small class="text-danger">
+                                        {{ form_errors(registrationForm.email) }}
+                                    </small>
+                                </div>
+                                <div class="mb-3">
+                                    {{ form_label(registrationForm.plainPassword, null, {'label_attr': {'class': 'form-check-label'}}) }}
+                                    {{ form_widget(registrationForm.plainPassword, {
+                                        'label': 'Hasło',
+                                        'attr': {'class': 'form-control', 'placeholder': 'Hasło'}
+                                    }) }}
+                                    <small class="text-danger">
+                                        {{ form_errors(registrationForm.plainPassword) }}
+                                    </small>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <div class="form-check">
+                                        {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
+                                        {{ form_label(registrationForm.agreeTerms, 'Akceptuję regulamin', {'label_attr': {'class': 'form-check-label'}}) }}
+                                    </div>
+                                    <small class="text-danger">
+                                        {{ form_errors(registrationForm.agreeTerms) }}
+                                    </small>
+                                </div>
 
-                        {{ form_start(registrationForm) }}
-                            <div class="mb-3">
-                                {{ form_row(registrationForm.email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}
-                            </div>
-                            <div class="mb-3">
-                                {{ form_row(registrationForm.plainPassword, {
-                                    'label': 'Hasło',
-                                    'attr': {'class': 'form-control', 'placeholder': 'Hasło'}
-                                }) }}
-                            </div>
-                            <div class="mb-3 form-check">
-                                {{ form_row(registrationForm.agreeTerms, {'label': 'Akceptuję regulamin', 'attr': {'class': 'form-check-input'}}) }}
-                                {{ form_label(registrationForm.agreeTerms, null, {'label_attr': {'class': 'form-check-label'}}) }}
-                            </div>
+                                <button type="submit" class="btn btn-primary">Zarejestruj się</button>
+                            {{ form_end(registrationForm) }}
+                        </div>
 
-                            <button type="submit" class="btn btn-primary">Zarejestruj się</button>
-                            <div class="d-flex justify-content-between mt-3">
-                                <p class="mb-0">Posiadasz już konto ? Zaloguj się <a href="{{ path('app_login') }}">Zaloguj się</a></p>
-                                <a href="{{ path('app_index') }}" class="btn btn-secondary">Powrót</a>
-                            </div>
-                        {{ form_end(registrationForm) }}
-                        
-                       
+                        <div id="form-errors-container"></div>
+
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                const formContainer = document.getElementById('registration-form-container');
+                                const formErrorsContainer = document.getElementById('form-errors-container');
+
+                                formContainer.addEventListener('submit', function (event) {
+                                    event.preventDefault();
+
+                                    const formData = new FormData(event.target);
+                                    fetch('{{ path('app_register') }}', {
+                                        method: 'POST',
+                                        body: formData,
+                                    })
+                                    .then(response => response.text())
+                                    .then(data => {
+                                        const parser = new DOMParser();
+                                        const htmlDoc = parser.parseFromString(data, 'text/html');
+
+                                        if (htmlDoc.getElementById('registration-form-container')) {
+                                            formContainer.innerHTML = htmlDoc.getElementById('registration-form-container').innerHTML;
+                                            
+                                            formErrorsContainer.innerHTML = htmlDoc.getElementById('form-errors-container').innerHTML;
+                                        } else {
+                                
+                                            window.location.replace('{{ path('app_login') }}');
+                                        }
+                                    })
+                                    .catch(error => console.error('Error:', error));
+                                });
+                            });
+                        </script>
                     </div>
                 </div>
             </div>

@@ -15,7 +15,7 @@ use ApiPlatform\Metadata\GetCollection;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['email'], message: 'Taki e-mail już istnieje w bazie danych')]
 #[ApiResource(operations: [
     new GetCollection()
 ])]
