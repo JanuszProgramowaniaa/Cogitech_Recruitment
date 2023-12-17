@@ -6,47 +6,24 @@
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
             <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
             {{ ux_controller_link_tags() }}
         {% endblock %}
 
         {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
             {{ importmap() }}
         {% endblock %}
     </head>
     <body>
-        {% include '_parts/navbar.html.twig' %}
+        {% include '_parts/_alertPlaceholder.html.twig' %}
+        <script src="{{ asset('view/js/alerts.js') }}"></script> 
+        {% include '_parts/_navbar.html.twig' %}
         
         {% block body %}{% endblock %}
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                function showAlert(message, type) {
-                    const alertPlaceholder = document.getElementById('alertPlaceholder');
-
-                    const wrapper = document.createElement('div');
-                    wrapper.innerHTML = `
-                        <div class="alert alert-${type} alert-dismissible fade show" role="alert">
-                            <div class="d-flex justify-content-center">${message}</div>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    `;
-
-                    alertPlaceholder.appendChild(wrapper);
-
-                    // hide alert after 3s
-                    setTimeout(() => {
-                        wrapper.firstChild.alert('close');
-                    }, 3000);
-                }
-      
-                {% for key, messages in app.session.flashbag.all() %}
-                    {% for message in messages %}
-                        showAlert('{{ message }}', '{{ key }}');
-                    {% endfor %}
-                {% endfor %}
-
-            });
-        </script>
+        {% include '_parts/_defaultFlashMessages.html.twig' %}
+        
     </body>
 </html>

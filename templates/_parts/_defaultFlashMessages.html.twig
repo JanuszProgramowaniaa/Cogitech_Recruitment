@@ -1,0 +1,21 @@
+<script>
+    {% for message in app.flashes('notice') %}
+        showAlert('{{ message }}', 'info');
+    {% endfor %}
+    {% set _ = app.session.flashbag.get('notice') %}
+
+    {% for message in app.flashes('error') %}
+        showAlert('{{ message }}', 'danger');
+    {% endfor %}
+    {% set _ = app.session.flashbag.get('error') %}
+
+    {% for message in app.flashes('success') %}
+        showAlert('{{ message }}', 'success');
+    {% endfor %}
+    {% set _ = app.session.flashbag.get('success') %}
+
+    {% for message in app.flashes('warning') %}
+        showAlert('{{ message }}', 'warning');
+    {% endfor %}
+    {% set _ = app.session.flashbag.get('warning') %}
+</script>
