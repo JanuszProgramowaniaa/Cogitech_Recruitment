@@ -68,7 +68,6 @@ class PostsController extends AbstractController
         $entityManager->remove($post);
         $entityManager->flush();
 
-        $this->addFlash('danger', 'Post został pomyślnie usunięty.');
         
         // Przekierowanie zależne od strony, z której przyszło żądanie
         $referer = $request->headers->get('referer');
