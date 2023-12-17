@@ -69,7 +69,10 @@ class PostsController extends AbstractController
         $entityManager->flush();
 
         
-        // Przekierowanie zależne od strony, z której przyszło żądanie
+        $this->addFlash(
+            'success',
+            'Pomyślnie usunięto post o tytule: '.$post->getTitle()
+        );
         $referer = $request->headers->get('referer');
         if ($referer !== null) {
             return $this->redirect($referer);
