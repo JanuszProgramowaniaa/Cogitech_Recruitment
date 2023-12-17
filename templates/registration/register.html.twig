@@ -42,6 +42,10 @@
 
                                 <button type="submit" class="btn btn-primary">Zarejestruj się</button>
                             {{ form_end(registrationForm) }}
+                            <div class="d-flex justify-content-between mt-3">
+                                <p class="mb-0">Posiadasz już konto? <a href="{{ path('app_login') }}">Zaloguj się</a></p>
+                                <a href="{{ path('app_index') }}" class="btn btn-secondary">Powrót</a>
+                            </div>
                         </div>
 
                         <div id="form-errors-container"></div>
