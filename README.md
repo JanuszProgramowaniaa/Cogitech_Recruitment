@@ -30,3 +30,16 @@ Uruchomienie serwera symfony:
 ```symfony server:start```
 Projekt będzie dostępny pod http://localhost:8000 w twojej przeglądarce.
 
+## Zdjęcia
+
+### Posty
+Mamy tutaj posty, wyświetlane jest 5 postów za pomoca paginacji, aby nie wywalić serwera
+![Image](https://github.com/JanuszProgramowaniaa/Cogitech_Recruitment/tree/master/public/images/posty.jpg)
+
+### Postman
+Mamy tutaj pokazany strzał przez postmana na adres/api/posts
+![Image](https://github.com/JanuszProgramowaniaa/Cogitech_Recruitment/tree/master/public/images/api.jpg)
+
+### Api Platform
+Tutaj mamy pokazane dostepne endpoiny w api platform
+![Image](https://github.com/JanuszProgramowaniaa/Cogitech_Recruitment/tree/master/public/images/Api-platform.jpg.jpg)
