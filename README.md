@@ -3,7 +3,7 @@
 ## Instalacja
 
 ### Sklonuj repozytorium
-```git clone https://github.com/yourusername/ChicChic-Shop.git```
+```git clone https://github.com/JanuszProgramowaniaa/Cogitech_Recruitment.git```
 
 ### Instalacja Composer
 - Upewnij się, że na Twoim systemie jest zainstalowany PHP oraz Composer. Jeśli nie masz jeszcze Composera, możesz go pobrać i zainstalować, kierując się instrukcjami dostępnymi na oficjalnej stronie [Composer](https://getcomposer.org/).
