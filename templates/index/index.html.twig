@@ -28,7 +28,7 @@
             <p>Jesteś zalogowany. Możesz przeglądać posty.</p>
             <a href="{{ path('app_posts') }}" class="btn btn-primary">Przejdź do postów</a>
         {% else %}
-            <p>Aby przeglądać posty, musisz posiadać być zalogowany.</p>
+            <p>Aby przeglądać posty, musisz być zalogowany.</p>
             <a href="{{ path('app_login') }}" class="btn btn-primary">Zaloguj się</a>
             <a href="{{ path('app_register') }}" class="btn btn-success">Zarejestruj się</a>
         {% endif %}
