@@ -42,8 +42,12 @@ Mamy tutaj pokazany strzał przez postmana na adres/api/posts
 
 ### Api Platform
 Tutaj mamy pokazane dostepne endpoiny w api platform
-![Posty](https://raw.githubusercontent.com/JanuszProgramowaniaa/Cogitech_Recruitment/master/public/images/Api-platform.jpg)
+![Api platform](https://raw.githubusercontent.com/JanuszProgramowaniaa/Cogitech_Recruitment/master/public/images/Api-platform.jpg)
 
 ### Import tabel
 Tutaj mamy pokazany import tabel z api do naszej bazy danych za pomoca komendy
-![Posty](https://raw.githubusercontent.com/JanuszProgramowaniaa/Cogitech_Recruitment/master/public/images/import.jpg)
+![import](https://raw.githubusercontent.com/JanuszProgramowaniaa/Cogitech_Recruitment/master/public/images/import.jpg)
+
+### Test komendy
+Tutaj widzimy działanie testu dla ImportPostsCommand
+![Test](https://raw.githubusercontent.com/JanuszProgramowaniaa/Cogitech_Recruitment/master/public/images/test.jpg)
